@@ -1,0 +1,29 @@
+﻿@model ConsultaResponse[]
+
+<h1>Resultados de la Consulta</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Movil</th>
+            <th>EntidTipo</th>
+            <th>EntidCodigo</th>
+            <th>Identificaion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entidad in Model)
+        {
+            <tr>
+                <td>@entidad.Nombre</td>
+                <td>@entidad.email</td>
+                <td>@entidad.Movil</td>
+                <td>@entidad.EntidTipo</td>
+                <td>@entidad.EntidCodigo</td>
+                <td>@entidad.Identifica</td>
+            </tr>
+        }
+    </tbody>
+</table>

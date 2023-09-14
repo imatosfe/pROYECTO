@@ -1,0 +1,384 @@
+﻿@{
+    Layout = null; // Esto deshabilita el layout para esta vista
+  
+}
+
+@model ConsultaRequest
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+ 
+
+    <!-- Agrega FontAwesome (asegúrate de agregarlo en tu etiqueta head) -->
+   
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+    
+        background-color: #123349; /* Color de fondo actual */
+    
+  
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: auto; /* Ajusta el tamaño de la imagen al tamaño original */
+    }
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 300px; /* Altura total del formulario */
+        width: 400px; /* Ancho total del formulario */
+    }
+
+    /* Mitad superior en blanco */
+    .white {
+        flex: 1;
+        width: 100%;
+        background-color: white;
+        padding: 20px;
+    }
+
+    /* Mitad inferior en verde */
+    .green {
+        flex: 1;
+        width: 100%;
+        background-image: linear-gradient(to bottom, #123349, rgba(34, 164, 149, 0.85));
+        color: white;
+        padding: 20px;
+    }
+
+    /* Estilos para el formulario */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn {
+        background-color: #fee623;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        margin-top: 20px; /* Espaciado superior entre los elementos */
+        display: block; /* Convierte el botón en un bloque para aplicar margin: 0 auto; */
+        margin: 0 auto; /* Centra horizontalmente */
+    }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #ff0000;
+        }
+
+    .container-imagen {
+        display: flex;
+        align-items: center;
+    }
+
+    .img {
+        width: 150px;
+        height: auto;
+        margin-right: 20px;
+    }
+
+    .span {
+        color: #5A99D3;
+        font-weight: 600;
+        font-size: 40px;
+        position: relative;
+        top: 16px;
+        left: -55px;
+    }
+
+        .input-small {
+            width: 300px; /* Cambia el valor de acuerdo a tus preferencias */
+        }
+
+        /* Estilos para los iconos dentro de los campos de entrada */
+        .input-with-icon i.fas{
+            color: #fee623; /* Cambia el color de los iconos (en este caso, azul) */
+            font-size: 24px
+        }
+
+
+
+    /* Estilos para los enlaces y texto en azul */
+    .green-link, .white p {
+        color: #224a95; /* Color azul */
+        text-align: center; /* Centra horizontalmente el texto */
+        font-size: 18px; /* Tamaño de fuente más grande */
+    }
+
+    /* Estilos para los enlaces en azul y en negrita */
+    .green-link {
+        font-weight: bold;
+    }
+
+    /* Estilos para los enlaces "Persona" y "Organización" */
+    .centered-links a {
+        color: #224a95; /* Color azul */
+        font-weight: bold;
+        /* Convierte los enlaces en bloques para centrar verticalmente */
+        margin: 10px auto; /* Centra verticalmente los enlaces */
+        font-size: 18px; /* Tamaño de fuente más grande */
+    }
+
+    /* Estilos para el texto "Formulario Verde (Abajo)" */
+    .white h2 {
+        color: #224a95; /* Color azul */
+        text-align: center;
+        margin-top: 20px; /* Espaciado superior entre el texto y los enlaces */
+        font-size: 24px; /* Tamaño de fuente más grande */
+    }
+
+    </style>
+</head>
+<body style="background-image: url('/imagenes/infra.png'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    <!-- Contenido de tu página -->
+ 
+<div class="container">
+    <!-- Mitad superior en blanco -->
+    <div class="green">
+        <div class="container-imagen">
+            <img src="~/Imagenes/logo1.png" alt="Imagen" class="img" />
+            <span class="span">COOPSYSTIC</span>
+        </div>
+        <h2>Bienvenido a Internet Cooperating</h2>
+
+        <form asp-action="RealizarConsulta">
+         
+            <div class="form-group">
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i> <!-- Icono de usuario sólido -->
+                        <input type="text" class="form-control input-small" asp-for="param.Identifica" required placeholder="Usuario">
+                 </div>
+            </div>
+
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" class="form-control input-small" asp-for="param.TipoIdentifica" id="password" data-password-visible="false" required placeholder="Password">
+                        <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <div class="caps-lock-indicator" style="display: none;">Mayúsculas activadas</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="remember-password">Recordar Contraseña</label>
+                    <input type="checkbox" id="remember-password" name="remember-password">
+                </div>
+
+
+
+                <div class="form-half-bottom">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" asp-for="param.SysticKey" value="E7A4336B-2402-42E6-9C7D-D127804B3F52">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" class="form-control" asp-for="param.SysticHash" value="IOFG7STZQYT/J9/9PF6U5YP2BRBRVGBYN18FMAVQ3AU#">
+                </div>
+             
+
+                    <button type="submit" id="my-button" class="btn">Ingresar al Sistema</button>
+                  
+
+            </div>
+        </form>
+    </div>
+
+        
+
+
+
+
+    <!-- Mitad inferior en verde -->
+    <div class="white">
+      
+        <!-- Enlace "Olvidaste tu contraseña?" -->
+        <p>   <a href="#" class="green-link">¿Olvidaste tu contraseña?</a> </p>
+
+        <!-- Enlace "No tienes cuenta? Regístrate" -->
+        <p>No tienes cuenta? <a href="#" class="green-link">Regístrate</a></p>
+
+        <!-- Enlaces "Persona" y "Organización" -->
+        <div class="centered-links">
+            <p>    <a href="#" class="green-link">Persona</a> | <a href="#" class="green-link">Organización</a></p>
+        </div>
+    </div>
+
+</div>
+
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--
+
+
+    <script>
+        $(document).ready(function () {
+            $(".toggle-password").mousedown(function () {
+                const passwordField = $("#password");
+                const passwordVisible = passwordField.attr("data-password-visible");
+
+                // Cambia el tipo de entrada del campo de contraseña y actualiza el atributo
+                if (passwordVisible === "false") {
+                    passwordField.attr("type", "text");
+                    passwordField.attr("data-password-visible", "true");
+                }
+            });
+
+            $(".toggle-password").mouseup(function () {
+                const passwordField = $("#password");
+                const passwordVisible = passwordField.attr("data-password-visible");
+
+                // Restaura el tipo de entrada original si el ojo se suelta
+                if (passwordVisible === "true") {
+                    passwordField.attr("type", "password");
+                    passwordField.attr("data-password-visible", "false");
+                }
+            });
+
+            // También puedes agregar eventos para manejar "mouseout" y "mouseleave" si es necesario.
+        });
+    </script>>
+    -->
+    <!-- Agrega SweetAlert en tu vista -->
+
+
+    <!-- Script para mostrar el SwalAlert -->
+  
+
+    <script>
+        $(document).ready(function () {
+            // Al cargar la página, verifica si hay una selección guardada en el almacenamiento local
+            var rememberPassword = localStorage.getItem("rememberPassword");
+            if (rememberPassword === "true") {
+                // Si se guardó "true", marca el checkbox
+                $("#remember-password").prop("checked", true);
+                // Obtén la contraseña guardada en el almacenamiento local y colócala en el campo de contraseña
+                var savedPassword = localStorage.getItem("savedPassword");
+                if (savedPassword) {
+                    $("#password").val(savedPassword);
+                }
+            }
+
+            $(".toggle-password").mousedown(function () {
+                const passwordField = $("#password");
+                const passwordVisible = passwordField.attr("data-password-visible");
+
+                // Cambia el tipo de entrada del campo de contraseña y actualiza el atributo
+                if (passwordVisible === "false") {
+                    passwordField.attr("type", "text");
+                    passwordField.attr("data-password-visible", "true");
+                }
+            });
+
+            $(".toggle-password").mouseup(function () {
+                const passwordField = $("#password");
+                const passwordVisible = passwordField.attr("data-password-visible");
+
+                // Restaura el tipo de entrada original si el ojo se suelta
+                if (passwordVisible === "true") {
+                    passwordField.attr("type", "password");
+                    passwordField.attr("data-password-visible", "false");
+                }
+            });
+
+            $("#password").on("keydown", function (e) {
+                var key = e.key;
+                if (key === "CapsLock") {
+                    $(".caps-lock-indicator").show();
+                }
+            });
+
+            $("#password").on("keyup", function (e) {
+                var key = e.key;
+                if (key === "CapsLock") {
+                    $(".caps-lock-indicator").hide();
+                }
+            });
+
+            // Escucha cambios en el checkbox y guarda la selección en el almacenamiento local
+            $("#remember-password").change(function () {
+                if (this.checked) {
+                    // Si el usuario marca el checkbox, almacena "true" en el almacenamiento local
+                    localStorage.setItem("rememberPassword", "true");
+                    // Almacena la contraseña ingresada en el almacenamiento local
+                    var passwordValue = $("#password").val();
+                    localStorage.setItem("savedPassword", passwordValue);
+                } else {
+                    // Si el usuario desmarca el checkbox, almacena "false" en el almacenamiento local
+                    localStorage.setItem("rememberPassword", "false");
+                    // Limpia la contraseña guardada
+                    localStorage.removeItem("savedPassword");
+                }
+            });
+
+
+        
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] as string))
+    {
+        <style>
+            .swal2-title {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 30px !important;
+                color: green !important;
+            }
+
+            .swal2-html-container {
+                font-family: "Times New Roman", Times, serif;
+                font-size: 20px !important;
+                color: blue !important;
+            }
+
+          
+        </style>
+
+
+        <script>
+            // Muestra el mensaje de error usando SweetAlert2
+        Swal.fire({
+               position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]',
+            showConfirmButton: false,
+             toast: true,
+             width: '650px',  
+            timer: 5000 // Cambia el temporizador si lo deseas
+       
+        });
+    </script>
+    }
+</body>
+
+
+</html>
+

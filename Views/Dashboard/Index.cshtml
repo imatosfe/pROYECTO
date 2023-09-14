@@ -1,0 +1,105 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = "_Layout"; // Esto establece el diseño principal para la vista del dashboard.
+}
+@model ConsultaResponse[]
+
+<!-- Diseño de la barra lateral -->
+<div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Configuración</a></li>
+        <li><a href="#">Reportes</a></li>
+        <a href="@Url.Action("Logout", "Account")">Cerrar Sesión</a>
+
+        <!-- Agrega más elementos de menú según sea necesario -->
+    </ul>
+</div>
+
+<!-- Contenido principal del dashboard -->
+<div class="content">
+    <header>
+        <h1>Bienvenido al Dashboard</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Lista de Entidades Dashboar Original</h2>
+                    <ul>
+                        @foreach (var entidad in Model)
+                        {
+                            <li>@entidad.Nombre</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+
+<style>
+    /* Estilos para la barra lateral */
+    .sidebar {
+        background-color: #333;
+        color: #fff;
+        width: 250px;
+        padding: 20px;
+        position: fixed;
+        height: 100%;
+    }
+
+        .sidebar h2 {
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .sidebar ul li {
+                margin-bottom: 10px;
+            }
+
+                .sidebar ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                    display: block;
+                }
+
+    /* Estilos para el contenido principal */
+    .content {
+        margin-left: 250px; /* Ancho de la barra lateral */
+        padding: 20px;
+    }
+
+    header {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    main {
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    /* Estilos para la lista de entidades */
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+</style>
